@@ -61,6 +61,8 @@ const resolvers = {
   },
 };
 
+const port = process.env.PORT || 4000;
+
 mongoose
   .connect(
     "mongodb+srv://faisal:faisal@cluster0.ascfltx.mongodb.net/?retryWrites=true&w=majority",
@@ -71,7 +73,7 @@ mongoose
   )
   .then(() => {
     const server = new ApolloServer({ typeDefs, resolvers });
-    server.listen().then(({ url }) => {
+    server.listen({ port }).then(({ url }) => {
       console.log(`Server ready at ${url}`);
     });
   });
